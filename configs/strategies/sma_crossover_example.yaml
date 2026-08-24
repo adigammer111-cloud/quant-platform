@@ -1,0 +1,43 @@
+# Example strategy configuration - edit and pass to:
+#   python cli.py backtest --config configs/strategies/sma_crossover_example.yaml
+#
+# Nothing here requires touching engine or strategy code: parameters, risk
+# limits, capital, transaction costs, universe, and dates are all
+# reconfigurable from this file.
+
+strategy:
+  name: sma_crossover
+
+parameters:
+  fast_period: 20
+  slow_period: 50
+
+risk:
+  stop_loss: 0.08
+  take_profit: null
+  max_position_pct: 0.20
+  max_portfolio_exposure_pct: 1.0
+
+capital:
+  initial: 100000
+
+costs:
+  brokerage_pct: 0.0
+  brokerage_flat_cap: 20.0
+  stt_pct_buy: 0.001
+  stt_pct_sell: 0.001
+  exchange_txn_pct: 0.0000345
+  sebi_fee_pct: 0.000001
+  stamp_duty_pct_buy: 0.00015
+  gst_pct: 0.18
+  slippage_bps: 5.0
+
+universe:
+  name: sample_watchlist
+
+period:
+  start: "2016-01-01"
+  end: "2026-08-20"
+
+benchmark: "^NSEI"
+execution_price_field: open

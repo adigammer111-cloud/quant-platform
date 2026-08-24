@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "streamlit-dashboard",
+      "runtimeExecutable": "C:/Users/adity/OneDrive/Desktop/Claud-Work/quant_platform/.venv/Scripts/python.exe",
+      "runtimeArgs": ["-m", "streamlit", "run", "C:/Users/adity/OneDrive/Desktop/Claud-Work/quant_platform/app/dashboard.py", "--server.port", "8501", "--server.headless", "true"],
+      "port": 8501
+    }
+  ]
+}

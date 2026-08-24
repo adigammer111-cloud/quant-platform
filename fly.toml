@@ -1,0 +1,36 @@
+# Fly.io app config. App names are globally unique across all Fly users -
+# if `quant-platform-paper-trading` is already taken, change `app` here (or
+# just let `fly launch` generate one) before deploying.
+#
+# Before the first deploy, create the persistent volume this depends on:
+#   fly volumes create quant_platform_data --region bom --size 1
+# (1GB is plenty for the DuckDB file + a modest amount of downloaded price
+# history; resize later with `fly volumes extend` if needed.)
+
+app = "quant-platform-paper-trading"
+primary_region = "bom"  # Mumbai - closest Fly region to NSE/BSE and this app's Indian-equities focus
+
+[build]
+
+[http_service]
+  internal_port = 8501
+  force_https = true
+  auto_stop_machines = "stop"
+  auto_start_machines = true
+  min_machines_running = 0  # allow the app to sleep when idle, to stay within the free allowance
+  processes = ["app"]
+
+[[vm]]
+  size = "shared-cpu-1x"
+  memory = "512mb"
+
+[mounts]
+  source = "quant_platform_data"
+  destination = "/data"
+
+[[http_service.checks]]
+  grace_period = "30s"
+  interval = "15s"
+  method = "GET"
+  timeout = "5s"
+  path = "/"

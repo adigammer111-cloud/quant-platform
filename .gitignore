@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+data_files/
+logs/
+.pytest_cache/
+# .streamlit/config.toml (theme) is tracked deliberately - only secrets.toml
+# (never created by this project, but a common place people drop API keys) is ignored.
+.streamlit/secrets.toml
+*.egg-info/
